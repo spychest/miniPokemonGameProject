@@ -57,7 +57,7 @@ const getPokemonByName = async (pokemonName) => {
 }
 
 const fillCard = (pokemon) => {
-    const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.id}"]`);
+    const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.pokedexNumber}"]`);
     let cardTitle = cardToComplete.querySelector('h2');
     cardTitle.innerText = `#${pokemon.pokedexNumber} - ${pokemon.name}`;
 
