@@ -21,7 +21,7 @@ The API that I'm using is only available in french. It's an API that I made and 
 # Acknowledgements
 - Thank you to [IgotYBack](https://github.com/IGotYBack) for the motivation and for the interest that she gaves me for JavaScript and CSS. You can also find her on [twitch](https://www.twitch.tv/igotyb).
 - Thank you to [Sheryrsen](https://www.twitch.tv/sheryrsen) for the test she mades.
-- 
+
 # Ideas
 - Make a button to empty the local storage and clean the grid
 - Make a counter to know how many pokemons it remains to find
