@@ -2,9 +2,12 @@
 Just a little project of game, based on the pokemon universe, where you have to type the name of the first 251 pokemons.
 
 ## Installation
-You can clone this project with the commands: 
+You can clone this project with the commands:
+
 `git clone https://github.com/spychest/miniPokemonGameProject.git`
+
 Or
+
 `git clone git@github.com:spychest/miniPokemonGameProject.git`
 
 Or you can download it by clicking on the code green button and then click on "Download zip". Then, you'll have to unzip the file.
