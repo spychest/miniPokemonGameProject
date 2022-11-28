@@ -220,9 +220,7 @@ const getPokemonInLocalStorage = () => {
 }
 
 const cleanLocalStorage = () => {
-    localStorage.removeItem('pokemons');
-    localStorage.removeItem('errorCounter');
-    localStorage.removeItem('bestStreak');
+    localStorage.clear();
 }
 
 const alreadyHasThisPokemon = (pokemon) => {
