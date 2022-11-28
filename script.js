@@ -4,8 +4,10 @@ const resetButton = document.querySelector('[data-reset]');
 const pokemonCounterSpan = document.querySelector('[data-current-pokemon]');
 const totalPokemonSpan = document.querySelector('[data-total-pokemon]');
 const errorCounterSpan = document.querySelector('[data-error-counter]');
+const streakCounterSpan = document.querySelector('[data-streak-counter]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
 const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/getAll'
+let currentStreak = 0;
 
 
 window.addEventListener('load', async (event) => {
@@ -19,6 +21,7 @@ window.addEventListener('load', async (event) => {
     pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
     totalPokemonSpan.innerText = allPokemons.length;
     updateErrorCounter();
+    updateStreakCounter();
 })
 
 resetButton.addEventListener('click', (event) => {
@@ -35,17 +38,22 @@ pokemonForm.addEventListener('submit', async (event) => {
         changeMessageBox('error', `Ce pokemon n'existe pas !`)
         increaseErrorCounter();
         updateErrorCounter();
+        currentStreak = 0;
     } else {
         console.log(alreadyHasThisPokemon(pokemon));
         if (true === alreadyHasThisPokemon(pokemon)) {
             changeMessageBox('error', 'Vous avez déjà ce pokemon !')
             increaseErrorCounter();
             updateErrorCounter();
+            currentStreak = 0;
+
         } else {
             changeMessageBox('success', 'Vous avez trouvé ' + pokemon.name);
             fillCard(pokemon)
             addPokemonInLocalStorage(pokemon);
             updatePokemonCounter();
+            currentStreak++;
+            updateStreakCounter();
         }
     }
     resetInput();
@@ -59,6 +67,16 @@ const updatePokemonCounter = () => {
 const updateErrorCounter = () => {
     let errorCount = getErrorCount()
     errorCounterSpan.innerText = errorCount ? errorCount : 0;
+}
+
+const updateStreakCounter = () => {
+    let bestStreak = getStreak();
+    if (currentStreak > bestStreak) {
+        updateStreak(currentStreak);
+        streakCounterSpan.innerText = currentStreak;
+    } else {
+        streakCounterSpan.innerText = bestStreak ? bestStreak : 0;
+    }
 }
 
 const changeMessageBox = (type, message) => {
@@ -178,6 +196,14 @@ const getErrorCount = () => {
     return JSON.parse(localStorage.getItem('errorCounter'));
 }
 
+const getStreak = () => {
+    return JSON.parse(localStorage.getItem('bestStreak'));
+}
+
+const updateStreak = (currentStreak) => {
+    localStorage.setItem('bestStreak', JSON.stringify(currentStreak));
+}
+
 const addPokemonInLocalStorage = (pokemon) => {
     let pokemonsInLocalStorage = getPokemonInLocalStorage();
 
@@ -196,6 +222,7 @@ const getPokemonInLocalStorage = () => {
 const cleanLocalStorage = () => {
     localStorage.removeItem('pokemons');
     localStorage.removeItem('errorCounter');
+    localStorage.removeItem('bestStreak');
 }
 
 const alreadyHasThisPokemon = (pokemon) => {

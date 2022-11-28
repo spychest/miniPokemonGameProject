@@ -248,3 +248,8 @@ hr {
     color: red;
     font-size: 1.5rem;
 }
+
+.streak {
+    color: green;
+    font-size: 1.5rem;
+}

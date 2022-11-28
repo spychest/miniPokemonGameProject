@@ -35,4 +35,4 @@ The API that I'm using is only available in french. It's an API that I made and 
 - Thanks to Eliot Alderson for saving the world.
 
 ## Ideas
-- Make a counter of the longest good answerstreak
+- Make an home page to choose between "Chill mod" and "Challenge mod". Challenge mod will allow user to choose a generation, launch a stopwatch, show number of errors, show the best streak.
