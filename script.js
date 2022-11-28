@@ -25,7 +25,7 @@ window.addEventListener('load', async (event) => {
 })
 
 resetButton.addEventListener('click', (event) => {
-    cleanLocalStorage();
+    localStorage.clear();
     location.reload();
 })
 
@@ -217,10 +217,6 @@ const addPokemonInLocalStorage = (pokemon) => {
 
 const getPokemonInLocalStorage = () => {
     return JSON.parse(localStorage.getItem('pokemons'));
-}
-
-const cleanLocalStorage = () => {
-    localStorage.clear();
 }
 
 const alreadyHasThisPokemon = (pokemon) => {
