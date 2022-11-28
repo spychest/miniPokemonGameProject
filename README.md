@@ -19,8 +19,8 @@ Only using vanilla JavaScript.
 The API that I'm using is only available in french. It's an API that I made and it doesn't require any auth. You can find documentation about this API right [here](https://pokemon-api.spychest.fr/api/doc).
 
 ## Acknowledgements
-- Thank to [IgotYBack](https://github.com/IGotYBack) for the motivation and for the interest that she gaves me for JavaScript and CSS. You can also find her on [twitch](https://www.twitch.tv/igotyb).
-- Thank to [Sheryrsen](https://www.twitch.tv/sheryrsen) for the test she mades.
+- Thanks to [IgotYBack](https://github.com/IGotYBack) for the motivation and for the interest that she gaves me for JavaScript and CSS. You can also find her on [twitch](https://www.twitch.tv/igotyb).
+- Thanks to [Sheryrsen](https://www.twitch.tv/sheryrsen) for the test she mades.
 
 ## Ideas
 - Make a button to empty the local storage and clean the grid
