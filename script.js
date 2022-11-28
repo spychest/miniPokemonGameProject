@@ -5,6 +5,8 @@ const pokemonCounterSpan = document.querySelector('[data-current-pokemon]');
 const totalPokemonSpan = document.querySelector('[data-total-pokemon]');
 const errorCounterSpan = document.querySelector('[data-error-counter]');
 const streakCounterSpan = document.querySelector('[data-streak-counter]');
+const loaderDiv = document.querySelector('[data-loader]');
+const mainDiv = document.querySelector('[data-main]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
 const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/getAll'
 let currentStreak = 0;
@@ -22,6 +24,8 @@ window.addEventListener('load', async (event) => {
     totalPokemonSpan.innerText = allPokemons.length;
     updateErrorCounter();
     updateStreakCounter();
+    loaderDiv.classList.add('hidden');
+    mainDiv.classList.remove('hidden')
 })
 
 resetButton.addEventListener('click', (event) => {
