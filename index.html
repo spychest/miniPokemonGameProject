@@ -11,19 +11,28 @@
 </head>
 
 <body>
-    <div class="container">
+    <main class="container">
         <div data-message-box></div>
-        <div class="form-container">
-            <form action="#" data-pokemon-form>
-                <div class="form-group">
-                    <label for="pokemonName">Rechercher pokemon</label>
-                    <input type="text" name="pokemonName" id="pokemonName" autocomplete="off" data-pokemon-input
-                        autofocus required>
-                    <small class="help">Entrer le nom du pokemon que vous souhaitez rechercher</small>
-                </div>
-                <button type="submit" class="btn btn-success">Rechercher</button>
-            </form>
+        <div class="top-container">
+            <div class="action-container">
+                <button class="btn btn-info" data-reset>Remettre à zéro</button>
+            </div>
+            <div class="form-container">
+                <form action="#" data-pokemon-form>
+                    <div class="form-group">
+                        <label for="pokemonName">Rechercher pokemon</label>
+                        <input type="text" name="pokemonName" id="pokemonName" autocomplete="off" data-pokemon-input
+                            autofocus required>
+                        <small class="help">Entrer le nom du pokemon que vous souhaitez rechercher</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </form>
+            </div>
+            <div class="stats">
+                <p class="pokemon-counters"><span data-current-pokemon></span>/<span data-total-pokemon></span></p>
+            </div>
         </div>
+
 
         <hr>
 
@@ -1535,7 +1544,7 @@
                 <p class="text-justify"></p>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

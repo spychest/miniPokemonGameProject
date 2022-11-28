@@ -25,7 +25,5 @@ The API that I'm using is only available in french. It's an API that I made and 
 - Thanks to Eliot Alderson for saving the world.
 
 ## Ideas
-- Make a button to empty the local storage and clean the grid
-- Make a counter to know how many pokemons it remains to find
 - Make a counter to know the error that we made
 - Make a counter of the longest good answerstreak

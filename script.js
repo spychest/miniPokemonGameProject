@@ -1,14 +1,27 @@
 const pokemonForm = document.querySelector('[data-pokemon-form]');
 const pokemonInput = document.querySelector('[data-pokemon-input]');
+const resetButton = document.querySelector('[data-reset]');
+const pokemonCounterSpan = document.querySelector('[data-current-pokemon]');
+const totalPokemonSpan = document.querySelector('[data-total-pokemon]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
+const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/getAll'
 
-window.addEventListener('load', (event) => {
+
+window.addEventListener('load', async (event) => {
     let pokemons = getPokemonInLocalStorage();
     if (pokemons) {
         pokemons.forEach(pokemon => {
             fillCard(pokemon);
         })
     }
+    let allPokemons = await getAllPokemon();
+    pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
+    totalPokemonSpan.innerText = allPokemons.length;
+})
+
+resetButton.addEventListener('click', (event) => {
+    cleanLocalStorage();
+    location.reload();
 })
 
 pokemonForm.addEventListener('submit', async (event) => {
@@ -26,10 +39,16 @@ pokemonForm.addEventListener('submit', async (event) => {
             changeMessageBox('success', 'Vous avez trouvé ' + pokemon.name);
             fillCard(pokemon)
             addPokemonInLocalStorage(pokemon);
+            updatePokemonCounter();
         }
     }
     resetInput();
 })
+
+const updatePokemonCounter = () => {
+    let pokemons = getPokemonInLocalStorage();
+    pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
+}
 
 const changeMessageBox = (type, message) => {
     let messageDiv = document.querySelector('[data-message-box]')
@@ -54,6 +73,16 @@ const getPokemonByName = async (pokemonName) => {
         return response.json();
     })
     return pokemon;
+}
+
+const getAllPokemon = async () => {
+    let pokemons = await fetch(baseApiUrlToGetAllPokemons).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.error)
+        }
+        return response.json();
+    })
+    return pokemons;
 }
 
 const fillCard = (pokemon) => {
@@ -142,6 +171,10 @@ const addPokemonInLocalStorage = (pokemon) => {
 
 const getPokemonInLocalStorage = () => {
     return JSON.parse(localStorage.getItem('pokemons'));
+}
+
+const cleanLocalStorage = () => {
+    localStorage.removeItem('pokemons')
 }
 
 const alreadyHasThisPokemon = (pokemon) => {
