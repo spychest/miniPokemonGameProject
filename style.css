@@ -243,3 +243,8 @@ hr {
 .pokemon-counters {
     font-size: 10rem;
 }
+
+.error-counter {
+    color: red;
+    font-size: 1.5rem;
+}

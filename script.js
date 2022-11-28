@@ -3,6 +3,7 @@ const pokemonInput = document.querySelector('[data-pokemon-input]');
 const resetButton = document.querySelector('[data-reset]');
 const pokemonCounterSpan = document.querySelector('[data-current-pokemon]');
 const totalPokemonSpan = document.querySelector('[data-total-pokemon]');
+const errorCounterSpan = document.querySelector('[data-error-counter]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
 const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/getAll'
 
@@ -17,6 +18,7 @@ window.addEventListener('load', async (event) => {
     let allPokemons = await getAllPokemon();
     pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
     totalPokemonSpan.innerText = allPokemons.length;
+    updateErrorCounter();
 })
 
 resetButton.addEventListener('click', (event) => {
@@ -31,10 +33,14 @@ pokemonForm.addEventListener('submit', async (event) => {
     let pokemon = await getPokemonByName(pokemonName);
     if (!pokemon) {
         changeMessageBox('error', `Ce pokemon n'existe pas !`)
+        increaseErrorCounter();
+        updateErrorCounter();
     } else {
         console.log(alreadyHasThisPokemon(pokemon));
         if (true === alreadyHasThisPokemon(pokemon)) {
             changeMessageBox('error', 'Vous avez déjà ce pokemon !')
+            increaseErrorCounter();
+            updateErrorCounter();
         } else {
             changeMessageBox('success', 'Vous avez trouvé ' + pokemon.name);
             fillCard(pokemon)
@@ -48,6 +54,11 @@ pokemonForm.addEventListener('submit', async (event) => {
 const updatePokemonCounter = () => {
     let pokemons = getPokemonInLocalStorage();
     pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
+}
+
+const updateErrorCounter = () => {
+    let errorCount = getErrorCount()
+    errorCounterSpan.innerText = errorCount ? errorCount : 0;
 }
 
 const changeMessageBox = (type, message) => {
@@ -158,6 +169,15 @@ const getClassForType = (type) => {
     }
 }
 
+const increaseErrorCounter = () => {
+    let currentErrorCount = getErrorCount();
+    localStorage.setItem('errorCounter', JSON.stringify(currentErrorCount + 1));
+}
+
+const getErrorCount = () => {
+    return JSON.parse(localStorage.getItem('errorCounter'));
+}
+
 const addPokemonInLocalStorage = (pokemon) => {
     let pokemonsInLocalStorage = getPokemonInLocalStorage();
 
@@ -174,7 +194,8 @@ const getPokemonInLocalStorage = () => {
 }
 
 const cleanLocalStorage = () => {
-    localStorage.removeItem('pokemons')
+    localStorage.removeItem('pokemons');
+    localStorage.removeItem('errorCounter');
 }
 
 const alreadyHasThisPokemon = (pokemon) => {
