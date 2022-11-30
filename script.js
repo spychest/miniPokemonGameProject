@@ -14,10 +14,7 @@ let currentStreak = 0;
 
 
 window.addEventListener('resize', (event) => {
-    let topDiv = document.querySelector('[data-top]');
-    let height = topDiv.offsetHeight;
-    let containerDiv = document.querySelector('hr');
-    containerDiv.style.marginTop = height + 'px';
+    correctDisplay();
 })
 
 window.addEventListener('load', async (event) => {
@@ -34,6 +31,7 @@ window.addEventListener('load', async (event) => {
     updateStreakCounter();
     loaderDiv.classList.add('hidden');
     mainDiv.classList.remove('hidden');
+    correctDisplay();
 })
 
 resetButton.addEventListener('click', (event) => {
@@ -70,6 +68,13 @@ pokemonForm.addEventListener('submit', async (event) => {
     }
     resetInput();
 })
+
+const correctDisplay = () => {
+    let topDiv = document.querySelector('[data-top]');
+    let height = topDiv.offsetHeight;
+    let containerDiv = document.querySelector('hr');
+    containerDiv.style.marginTop = height + 'px';
+}
 
 const updatePokemonCounter = () => {
     let pokemons = getPokemonInLocalStorage();

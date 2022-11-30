@@ -234,6 +234,7 @@ hr {
     text-align: center;
     font-size: 1.5rem;
     padding: .5rem;
+    z-index: 2;
 }
 
 .error-message {
