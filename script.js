@@ -12,6 +12,14 @@ const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/
 let currentStreak = 0;
 
 
+
+window.addEventListener('resize', (event) => {
+    let topDiv = document.querySelector('[data-top]');
+    let height = topDiv.offsetHeight;
+    let containerDiv = document.querySelector('hr');
+    containerDiv.style.marginTop = height + 'px';
+})
+
 window.addEventListener('load', async (event) => {
     let pokemons = getPokemonInLocalStorage();
     if (pokemons) {
@@ -25,7 +33,7 @@ window.addEventListener('load', async (event) => {
     updateErrorCounter();
     updateStreakCounter();
     loaderDiv.classList.add('hidden');
-    mainDiv.classList.remove('hidden')
+    mainDiv.classList.remove('hidden');
 })
 
 resetButton.addEventListener('click', (event) => {

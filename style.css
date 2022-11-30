@@ -17,6 +17,10 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #bbb;
 }
 
 .form-container {
@@ -93,7 +97,7 @@ button {
 }
 
 hr {
-    margin: 1rem 0;
+    margin: 10% 0 1rem 0;
 }
 
 .pokemon-container {
