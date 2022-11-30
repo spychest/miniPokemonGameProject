@@ -67,6 +67,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         }
     }
     resetInput();
+    correctDisplay();
 })
 
 const correctDisplay = () => {

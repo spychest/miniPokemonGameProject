@@ -21,30 +21,35 @@
         <div class="main-container hidden" data-main>
 
             <div class="top-container" data-top>
-                <div class="action-container">
-                    <button class="btn btn-info" data-reset>Remettre à zéro</button>
+                <div class="info-container">
+                    <div class="action-container">
+                        <button class="btn btn-info" data-reset>Remettre à zéro</button>
+                    </div>
+                    <div class="form-container">
+                        <form action="#" data-pokemon-form>
+                            <div class="form-group">
+                                <label for="pokemonName">Rechercher pokemon</label>
+                                <input type="text" name="pokemonName" id="pokemonName" autocomplete="off"
+                                    data-pokemon-input autofocus required>
+                                <small class="help">Entrer le nom du pokemon que vous souhaitez rechercher</small>
+                            </div>
+                            <button type="submit" class="btn btn-success">Rechercher</button>
+                        </form>
+                    </div>
+                    <div class="stats">
+                        <p class="pokemon-counters"><span data-current-pokemon></span>/<span data-total-pokemon></span>
+                        </p>
+                        <p class="error-counter">Nombre d'erreur: <span data-error-counter></span></p>
+                        <p class="streak">Meilleure série: <span data-streak-counter></span></p>
+                    </div>
                 </div>
-                <div class="form-container">
-                    <form action="#" data-pokemon-form>
-                        <div class="form-group">
-                            <label for="pokemonName">Rechercher pokemon</label>
-                            <input type="text" name="pokemonName" id="pokemonName" autocomplete="off" data-pokemon-input
-                                autofocus required>
-                            <small class="help">Entrer le nom du pokemon que vous souhaitez rechercher</small>
-                        </div>
-                        <button type="submit" class="btn btn-success">Rechercher</button>
-                    </form>
-                </div>
-                <div class="stats">
-                    <p class="pokemon-counters"><span data-current-pokemon></span>/<span data-total-pokemon></span></p>
-                    <p class="error-counter">Nombre d'erreur: <span data-error-counter></span></p>
-                    <p class="streak">Meilleure série: <span data-streak-counter></span></p>
-                </div>
+
+                <div data-message-box></div>
+
             </div>
 
-
             <hr>
-            <div data-message-box></div>
+
             <div class="pokemon-container" data-container>
                 <div class="pokemon-card" pokedex-id="1">
                     <h2 class="text-center"></h2>
