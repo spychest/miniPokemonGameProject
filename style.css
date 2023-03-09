@@ -260,11 +260,11 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 
     border: 10px solid yellow;
     border-radius: 10px;
-    background-color: rgb(97, 165, 87);
+    /* background-color: rgb(97, 165, 87); */
 
     width: 350px;
     height: 550px;
@@ -292,6 +292,12 @@ hr {
     background-size: contain;
     background-position: center;
 }
+
+.description {
+    padding: 0.2rem;
+    padding-top: 1rem;
+}
+
 
 .blue {
     background-color: blue;

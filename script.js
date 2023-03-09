@@ -8,6 +8,7 @@
 // Le TP de de vosu cfr above
 // https://codepen.io/simeydotme/pen/abYWJdX comprendre comment ça fonctionne, ne fut-ce que pour les effects sur la carte
 
+// form / header
 const pokemonForm = document.querySelector('[data-pokemon-form]');
 const pokemonInput = document.querySelector('[data-pokemon-input]');
 const resetButton = document.querySelector('[data-reset]');
@@ -141,22 +142,45 @@ const getAllPokemon = async () => {
 }
 
 const fillCard = (pokemon) => {
+    // get id
     const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.pokedexNumber}"]`);
-    let cardTitle = cardToComplete.querySelector('h2');
-    let pkmNumber = cardToComplete.querySelector('.nbr');
-    console.log(pkmNumber)
+
+    let headerCard = document.createElement('div');
+    headerCard.classList.add('header-card')
+    let cardTitle = document.createElement('h2');
+    cardTitle.classList.add('text-center')
     cardTitle.innerText = pokemon.name;
-    pkmNumber.innerText = pokemon.pokedexNumber;
+    let pokemonNumber = document.createElement('p');
+    pokemonNumber.innerText = pokemon.pokedexNumber;
+
+    headerCard.append(cardTitle, pokemonNumber);
+
+    let cardImg = document.createElement('div');
+    cardImg.classList.add('img-card');
+    cardImg.style.backgroundImage = `url('${pokemon.imageUrl}')`
+
+    let cardTypeDiv = document.createElement('div');
+    cardTypeDiv.classList.add('w1', 'flex', 'space-evenly');
+    let cardTypes = document.createElement('div');
+    cardTypes.classList.add('types')
+
+    cardTypeDiv.append(cardTypes);
+
+    let cardDescription = document.createElement('p');
+    cardDescription.innerText = pokemon.description;
+    cardDescription.classList.add('h2', 'w1', 'description')
+
+    cardToComplete.append(headerCard, cardImg, cardTypeDiv, cardDescription);
+
 
     // let cardImage = cardToComplete.querySelector('img');
-    let cardImageBG = cardToComplete.querySelector('#prout');
+    let cardImageBG = cardToComplete.querySelector('#pkm-img');
     console.log(cardImageBG)
     console.log(pokemon.imageUrl)
 
     // cardImage.setAttribute('src', pokemon.imageUrl);
     // cardImage.setAttribute('alt', pokemon.name);
-    cardImageBG.style.backgroundImage = `url('${pokemon.imageUrl}')`
-    let cardTypes = cardToComplete.querySelector('.types');
+
 
     let firstTypeSpan = document.createElement('span');
     firstTypeSpan.classList.add('pill')
@@ -173,9 +197,6 @@ const fillCard = (pokemon) => {
 
         cardTypes.append(secondTypeSpan);
     }
-
-    let cardDescription = cardToComplete.querySelector('.description');
-    cardDescription.innerText = pokemon.description;
 }
 
 const getClassForType = (type) => {
