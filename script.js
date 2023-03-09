@@ -1,3 +1,14 @@
+// TP: #1 - faire une fonction qui prend en paramètre un tableau d'objets décrivant les pokemons. #2 - dans cette fonction faire une boucle qui va créer N [div.pokemon-card] . #3 - la fonction doit retourner HTMLCollection[div.pokemon-card]. #bonus - greffer des événement de de click sur les boutons présent dans [div.pokemmon-card], et au click logger l'action. #notions - scope, boucle, fonction, dom #contrainte - la fonction ne peux rien ajouter dans le dom (event, html) d'elle même.
+
+// Terminer mise en forme générale de la carte
+// -> Chercher les couleurs de tous les types de pokemon (lié au 1st type)
+// Styliser le site en général
+//  -> importer la police pokemon
+// choisir les couleurs ()
+// Le TP de de vosu cfr above
+// https://codepen.io/simeydotme/pen/abYWJdX comprendre comment ça fonctionne, ne fut-ce que pour les effects sur la carte
+
+// form / header
 const pokemonForm = document.querySelector('[data-pokemon-form]');
 const pokemonInput = document.querySelector('[data-pokemon-input]');
 const resetButton = document.querySelector('[data-reset]');
@@ -10,8 +21,6 @@ const mainDiv = document.querySelector('[data-main]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
 const baseApiUrlToGetAllPokemons = 'https://pokemon-api.spychest.fr/api/pokemon/getAll'
 let currentStreak = 0;
-
-
 
 window.addEventListener('resize', (event) => {
     correctDisplay();
@@ -133,14 +142,45 @@ const getAllPokemon = async () => {
 }
 
 const fillCard = (pokemon) => {
+    // get id
     const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.pokedexNumber}"]`);
-    let cardTitle = cardToComplete.querySelector('h2');
-    cardTitle.innerText = `#${pokemon.pokedexNumber} - ${pokemon.name}`;
 
-    let cardImage = cardToComplete.querySelector('img');
-    cardImage.setAttribute('src', pokemon.imageUrl);
-    cardImage.setAttribute('alt', pokemon.name);
-    let cardTypes = cardToComplete.querySelector('.types');
+    let headerCard = document.createElement('div');
+    headerCard.classList.add('header-card')
+    let cardTitle = document.createElement('h2');
+    cardTitle.classList.add('text-center')
+    cardTitle.innerText = pokemon.name;
+    let pokemonNumber = document.createElement('p');
+    pokemonNumber.innerText = pokemon.pokedexNumber;
+
+    headerCard.append(cardTitle, pokemonNumber);
+
+    let cardImg = document.createElement('div');
+    cardImg.classList.add('img-card');
+    cardImg.style.backgroundImage = `url('${pokemon.imageUrl}')`
+
+    let cardTypeDiv = document.createElement('div');
+    cardTypeDiv.classList.add('w1', 'flex', 'space-evenly');
+    let cardTypes = document.createElement('div');
+    cardTypes.classList.add('types')
+
+    cardTypeDiv.append(cardTypes);
+
+    let cardDescription = document.createElement('p');
+    cardDescription.innerText = pokemon.description;
+    cardDescription.classList.add('h2', 'w1', 'description')
+
+    cardToComplete.append(headerCard, cardImg, cardTypeDiv, cardDescription);
+
+
+    // let cardImage = cardToComplete.querySelector('img');
+    let cardImageBG = cardToComplete.querySelector('#pkm-img');
+    console.log(cardImageBG)
+    console.log(pokemon.imageUrl)
+
+    // cardImage.setAttribute('src', pokemon.imageUrl);
+    // cardImage.setAttribute('alt', pokemon.name);
+
 
     let firstTypeSpan = document.createElement('span');
     firstTypeSpan.classList.add('pill')
@@ -157,9 +197,6 @@ const fillCard = (pokemon) => {
 
         cardTypes.append(secondTypeSpan);
     }
-
-    let cardDescription = cardToComplete.querySelector('p');
-    cardDescription.innerText = pokemon.description;
 }
 
 const getClassForType = (type) => {
