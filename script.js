@@ -89,7 +89,7 @@ const correctDisplay = () => {
     horizontalRow.style.marginTop = height + 'px';
 }
 
-const generateEmptyCardInDom = async (numberOfPokemons) => {
+const generateEmptyCardInDom = (numberOfPokemons) => {
     for (let i = 1; i < numberOfPokemons; i++) {
         let cardToAddToDom = document.createElement('div');
         cardToAddToDom.classList.add('pokemon-card');
