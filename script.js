@@ -16,6 +16,7 @@ const pokemonCounterSpan = document.querySelector('[data-current-pokemon]');
 const totalPokemonSpan = document.querySelector('[data-total-pokemon]');
 const errorCounterSpan = document.querySelector('[data-error-counter]');
 const streakCounterSpan = document.querySelector('[data-streak-counter]');
+const containerDiv = document.querySelector('[data-container]');
 const loaderDiv = document.querySelector('[data-loader]');
 const mainDiv = document.querySelector('[data-main]');
 const baseApiUrl = 'https://pokemon-api.spychest.fr/api/pokemon/getPokemonByName/'
@@ -27,15 +28,17 @@ window.addEventListener('resize', (event) => {
 })
 
 window.addEventListener('load', async (event) => {
+    let allPokemons = await getAllPokemon();
+    totalPokemonSpan.innerText = allPokemons.length;
+    generateEmptyCardInDom(allPokemons.length);
+
     let pokemons = getPokemonInLocalStorage();
     if (pokemons) {
         pokemons.forEach(pokemon => {
             fillCard(pokemon);
         })
     }
-    let allPokemons = await getAllPokemon();
     pokemonCounterSpan.innerText = pokemons ? pokemons.length : 0;
-    totalPokemonSpan.innerText = allPokemons.length;
     updateErrorCounter();
     updateStreakCounter();
     loaderDiv.classList.add('hidden');
@@ -82,8 +85,17 @@ pokemonForm.addEventListener('submit', async (event) => {
 const correctDisplay = () => {
     let topDiv = document.querySelector('[data-top]');
     let height = topDiv.offsetHeight;
-    let containerDiv = document.querySelector('hr');
-    containerDiv.style.marginTop = height + 'px';
+    let horizontalRow = document.querySelector('hr');
+    horizontalRow.style.marginTop = height + 'px';
+}
+
+const generateEmptyCardInDom = async (numberOfPokemons) => {
+    for (let i = 1; i < numberOfPokemons; i++) {
+        let cardToAddToDom = document.createElement('div');
+        cardToAddToDom.classList.add('pokemon-card');
+        cardToAddToDom.setAttribute('pokedex-id', i);
+        containerDiv.append(cardToAddToDom);
+    }
 }
 
 const updatePokemonCounter = () => {
