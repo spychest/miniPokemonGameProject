@@ -85,14 +85,12 @@ pokemonForm.addEventListener('submit', async (event) => {
 const correctDisplay = () => {
     let topDiv = document.querySelector('[data-top]');
     let height = topDiv.offsetHeight;
-    let horizontalRow = document.querySelector('hr');
-    horizontalRow.style.marginTop = height + 'px';
 }
 
 const generateEmptyCardInDom = (numberOfPokemons) => {
     for (let i = 1; i < numberOfPokemons; i++) {
         let cardToAddToDom = document.createElement('div');
-        cardToAddToDom.classList.add('pokemon-card');
+        cardToAddToDom.classList.add('pokemon-card', 'pokemon-back');
         cardToAddToDom.setAttribute('pokedex-id', i);
         containerDiv.append(cardToAddToDom);
     }
@@ -157,6 +155,10 @@ const fillCard = (pokemon) => {
     // get id
     const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.pokedexNumber}"]`);
 
+    cardToComplete.classList.add(getClassForType(pokemon.firstType))
+    cardToComplete.classList.remove('pokemon-back')
+    cardToComplete.style.border = "10px solid hsl(52, 100%, 65%)"
+
     let headerCard = document.createElement('div');
     headerCard.classList.add('header-card')
     let cardTitle = document.createElement('h2');
@@ -180,7 +182,8 @@ const fillCard = (pokemon) => {
 
     let cardDescription = document.createElement('p');
     cardDescription.innerText = pokemon.description;
-    cardDescription.classList.add('h2', 'w1', 'description')
+    cardDescription.classList.add('description', getClassForType(pokemon.firstType))
+    // cardDescription.classList.add(getClassForType(pokemon.firstType))
 
     cardToComplete.append(headerCard, cardImg, cardTypeDiv, cardDescription);
 
