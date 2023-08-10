@@ -15,10 +15,16 @@ window.addEventListener('keyup', (event) => {
     resetSecret();
 })
 
+window.addEventListener("load", (event) => {
+    console.log("Page load");
+    let isAudioPlay = false;
+    let secret = '';
+})
+
 const playMusic = () => {
     isAudioPlay = true;
     audio.play();
-    audio.volume = 0.03;
+    audio.volume = 0.1;
 }
 
 const stopMusic = () => {

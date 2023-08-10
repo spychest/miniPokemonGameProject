@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catch'em all</title>
     <script src="script.js" defer></script>
-    <script src="easter.js" type="module"></script>
+    <script src="easter.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="loader.css">
 </head>
@@ -23,16 +23,14 @@
             <h1 class="pokemon-font title">Catch'em All</h1>
             <div class="top-container" data-top>
                 <div class="info-container">
-                    <div class="action-container">
+                    <div>
                         <button class="btn btn-info" data-reset>Remettre à zéro</button>
                     </div>
                     <div class="form-container">
                         <form action="#" data-pokemon-form>
                             <div class="form-group">
-                                <label for="pokemonName">Rechercher pokemon</label>
-                                <input type="text" name="pokemonName" id="pokemonName" autocomplete="off"
+                                <input type="text" name="pokemonName" id="pokemonName" autocomplete="off" placeholder="Entrer le nom du pokemon que vous souhaitez rechercher"
                                     data-pokemon-input autofocus required>
-                                <small class="help">Entrer le nom du pokemon que vous souhaitez rechercher</small>
                             </div>
                             <button type="submit" class="btn btn-success">Rechercher</button>
                         </form>
