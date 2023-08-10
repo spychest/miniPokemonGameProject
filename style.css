@@ -169,19 +169,39 @@ button {
     padding: .5rem;
 }
 
+.flipping-card {
+    background-color: transparent;
+    perspective: 1000px;
+    width: 350px;
+    height: 550px;
+}
+
+.flipping-card.show .card {
+    transform: rotateY(180deg)
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+}
+
 .pokemon-back {
-    min-width: 332px;
-    min-height: 550px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-left: 20px solid hsl(227, 54%, 21%);
     border-right: 20px solid hsl(227, 54%, 21%);
-
     background-image: url("./assets/pokemonBack.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    backface-visibility: hidden;
 }
 
 .pokemon-card {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -190,9 +210,10 @@ button {
     border-radius: 10px;
     background-color: hsl(var(--hue), var(--saturation), var(--lightness));
     /* Rajouter filter pour avoir l'effet bubulle */
-
-    width: 350px;
-    height: 550px;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
     padding: .5rem;
 }
 

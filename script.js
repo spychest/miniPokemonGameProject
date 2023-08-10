@@ -90,10 +90,30 @@ const correctDisplay = () => {
 const generateEmptyCardInDom = (numberOfPokemons) => {
     for (let i = 1; i < numberOfPokemons; i++) {
         let cardToAddToDom = document.createElement('div');
-        cardToAddToDom.classList.add('pokemon-card', 'pokemon-back');
+        cardToAddToDom.classList.add('flipping-card');
         cardToAddToDom.setAttribute('pokedex-id', i);
+
+
+
+        let card = document.createElement('div');
+        card.classList.add('card');
+
+        let cardBackFace = document.createElement('div');
+        cardBackFace.classList.add('pokemon-back');
+
+        let cardFrontFace = document.createElement('div');
+        cardFrontFace.classList.add('pokemon-card');
+
+        card.append(cardBackFace, cardFrontFace);
+
+        cardToAddToDom.append(card);
+
         containerDiv.append(cardToAddToDom);
     }
+}
+
+function flipCard(target) {
+    target.classList.add('show');
 }
 
 const updatePokemonCounter = () => {
@@ -154,10 +174,10 @@ const getAllPokemon = async () => {
 const fillCard = (pokemon) => {
     // get id
     const cardToComplete = document.querySelector(`[pokedex-id="${pokemon.pokedexNumber}"]`);
-
-    cardToComplete.classList.add(getClassForType(pokemon.firstType))
-    cardToComplete.classList.remove('pokemon-back')
-    cardToComplete.style.border = "10px solid hsl(52, 100%, 65%)"
+    console.log(cardToComplete);
+    const cardFace = cardToComplete.querySelector('.pokemon-card')
+    cardFace.classList.add(getClassForType(pokemon.firstType))
+    cardFace.style.border = "10px solid hsl(52, 100%, 65%)"
 
     let headerCard = document.createElement('div');
     headerCard.classList.add('header-card')
@@ -185,11 +205,11 @@ const fillCard = (pokemon) => {
     cardDescription.classList.add('description', getClassForType(pokemon.firstType))
     // cardDescription.classList.add(getClassForType(pokemon.firstType))
 
-    cardToComplete.append(headerCard, cardImg, cardTypeDiv, cardDescription);
+    cardFace.append(headerCard, cardImg, cardTypeDiv, cardDescription);
 
 
     // let cardImage = cardToComplete.querySelector('img');
-    let cardImageBG = cardToComplete.querySelector('#pkm-img');
+    let cardImageBG = cardFace.querySelector('#pkm-img');
     console.log(cardImageBG)
     console.log(pokemon.imageUrl)
 
@@ -212,6 +232,11 @@ const fillCard = (pokemon) => {
 
         cardTypes.append(secondTypeSpan);
     }
+
+    const scrollOptions = { behavior: 'smooth', block: 'center' };
+    cardToComplete.scrollIntoView(scrollOptions);
+    setTimeout(flipCard, 500, cardToComplete)
+
 }
 
 const getClassForType = (type) => {
