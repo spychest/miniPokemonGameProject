@@ -247,7 +247,8 @@ button {
     height: 40%;
     border-radius: 5px;
     background-color: rgba(186, 186, 186, .5);
-    font-size: .8rem;
+    font-size: 1.2rem !important;
+    text-align: justify;
 }
 
 .types {
