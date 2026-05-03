@@ -1,59 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch'em all</title>
-    <script src="script.js" defer></script>
-    <script src="easter.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="loader.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catch'em all</title>
+        <script src="./script.js" type="module"></script>
+        <script src="./easter.js" defer></script>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./loader.css">
+    </head>
 
-<body>
-    <main class="container">
-        <div class="loader" data-loader>
-            <div class="inner one"></div>
-            <div class="inner two"></div>
-            <div class="inner three"></div>
-        </div>
-        <div class="main-container hidden" data-main>
-            <h1 class="pokemon-font title">Catch'em All</h1>
-            <div class="top-container" data-top>
-                <div class="info-container">
-                    <div>
-                        <button class="btn btn-info" data-reset>Remettre à zéro</button>
+    <body>
+        <main class="container">
+            <div class="loader" data-loader>
+                <div class="inner one"></div>
+                <div class="inner two"></div>
+                <div class="inner three"></div>
+            </div>
+            <div class="main-container hidden" data-main>
+                <h1 class="pokemon-font title">Catch'em All</h1>
+                <div class="top-container" data-top>
+                    <div class="info-container">
+                        <div>
+                            <button class="btn btn-info" data-reset>Remettre à
+                                zéro</button>
+                        </div>
+                        <div class="form-container">
+                            <form action="#" data-pokemon-form>
+                                <div class="form-group">
+                                    <input type="text" name="pokemonName"
+                                        id="pokemonName" autocomplete="off"
+                                        placeholder="Entrer le nom du pokemon que vous souhaitez rechercher"
+                                        data-pokemon-input autofocus required>
+                                </div>
+                                <button type="submit"
+                                    class="btn btn-success">Rechercher</button>
+                            </form>
+                        </div>
+                        <div class="stats">
+                            <p class="pokemon-counters pokemon-font"><span
+                                    data-current-pokemon></span>/<span
+                                    data-total-pokemon></span>
+                            </p>
+                            <p class="error-counter">Nombre d'erreur: <span
+                                    data-error-counter></span></p>
+                            <p class="streak">Meilleure série: <span
+                                    data-streak-counter></span></p>
+                        </div>
                     </div>
-                    <div class="form-container">
-                        <form action="#" data-pokemon-form>
-                            <div class="form-group">
-                                <input type="text" name="pokemonName" id="pokemonName" autocomplete="off" placeholder="Entrer le nom du pokemon que vous souhaitez rechercher"
-                                    data-pokemon-input autofocus required>
-                            </div>
-                            <button type="submit" class="btn btn-success">Rechercher</button>
-                        </form>
-                    </div>
-                    <div class="stats">
-                        <p class="pokemon-counters pokemon-font"><span data-current-pokemon></span>/<span
-                                data-total-pokemon></span>
-                        </p>
-                        <p class="error-counter">Nombre d'erreur: <span data-error-counter></span></p>
-                        <p class="streak">Meilleure série: <span data-streak-counter></span></p>
-                    </div>
+
+                    <div data-message-box></div>
+
                 </div>
 
-                <div data-message-box></div>
+                <div class="pokemon-container" data-container>
 
+                </div>
             </div>
 
-            <div class="pokemon-container" data-container>
-
-            </div>
-        </div>
-
-    </main>
-</body>
+        </main>
+    </body>
 
 </html>
