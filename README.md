@@ -35,8 +35,11 @@ The API that I'm using is only available in french. It's an API that I made and 
 - Thanks to Eliot Alderson for saving the world.
 
 ## Todo
-[ ] Update API with parameters
-[x] Use generation to make the DOM
+- [ ] Update API with parameters
+- [ ] Add a way to monitor the time needed to finish the game
+- [ ] Allow user to save their best score
+- [ ] Separate the score reinit. from the pokemon reinit.
+- [x] Use generation to make the DOM
 
 ## Ideas
 - Make an home page to choose between "Chill mod" and "Challenge mod". Challenge mod will allow user to choose a generation, launch a stopwatch, show number of errors, show the best streak.
