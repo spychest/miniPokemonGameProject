@@ -39,6 +39,7 @@ The API that I'm using is only available in french. It's an API that I made and 
 - [ ] Add a way to monitor the time needed to finish the game
 - [ ] Allow user to save their best score
 - [ ] Separate the score reinit. from the pokemon reinit.
+- [ ] Create a react version
 - [x] Use generation to make the DOM
 
 ## Ideas
