@@ -16,7 +16,6 @@ window.addEventListener('keyup', (event) => {
 })
 
 window.addEventListener("load", (event) => {
-    console.log("Page load");
     let isAudioPlay = false;
     let secret = '';
 })

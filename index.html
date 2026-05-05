@@ -23,9 +23,16 @@
                 <h1 class="pokemon-font title">Catch'em All</h1>
                 <div class="top-container" data-top>
                     <div class="info-container">
-                        <div>
-                            <button class="btn btn-info" data-reset>Remettre à
-                                zéro</button>
+                        <div class="flex flex-column gap-1">
+                            <button class="btn btn-info" data-reset>
+                                Remettre à zéro
+                            </button>
+                            <button
+                                command="show-modal"
+                                commandfor="settings-form"
+                                class="btn btn-info">
+                                Paramètres
+                            </button>
                         </div>
                         <div class="form-container">
                             <form action="#" data-pokemon-form>
@@ -48,6 +55,8 @@
                                     data-error-counter></span></p>
                             <p class="streak">Meilleure série: <span
                                     data-streak-counter></span></p>
+                            <p class="streak">Série en cours: <span
+                                    data-current-streak-counter></span></p>
                         </div>
                     </div>
 
@@ -56,11 +65,94 @@
                 </div>
 
                 <div class="pokemon-container" data-container>
-
                 </div>
-            </div>
 
-        </main>
-    </body>
+                <dialog id="settings-form" class="settings-form">
+                    <button
+                        class="close-button"
+                        command="close"
+                        commandfor="settings-form"
+                        aria-label="Close settings form"
+                        style="position: absolute; top: .5rem; right: .5rem;">
+                        &times;
+                    </button>
+                    <h3 class="text-center">Settings</h3>
+                    <form action="#" method="dialog" data-form-settings>
+                        <fieldset>
+                            <legend>
+                                Quelle(s) générations(s) de Pokémon
+                                souhaitez-vous inclure ?
+                            </legend>
+                            <div class="checkbox-group" data-checkbox-group>
+                                <div>
+                                    <input type="checkbox" name="gen1"
+                                        id="gen1"
+                                        value="1" checked>
+                                    <label for="gen1">Génération 1</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen2"
+                                        id="gen2"
+                                        value="2">
+                                    <label for="gen2">Génération 2</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen3"
+                                        id="gen3"
+                                        value="3">
+                                    <label for="gen3">Génération 3</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen4"
+                                        id="gen4"
+                                        value="4">
+                                    <label for="gen4">Génération 4</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen5"
+                                        id="gen5"
+                                        value="5">
+                                    <label for="gen5">Génération 5</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen6"
+                                        id="gen6"
+                                        value="6">
+                                    <label for="gen6">Génération 6</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen7"
+                                        id="gen7"
+                                        value="7">
+                                    <label for="gen7">Génération 7</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen8"
+                                        id="gen8"
+                                        value="8">
+                                    <label for="gen8">Génération 8</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="gen9"
+                                        id="gen9"
+                                        value="9">
+                                    <label for="gen9">Génération 9</label>
+                                </div>
+                            </fieldset>
 
-</html>
+                            <button
+                                type="button"
+                                class="btn btn-success"
+                                command="close"
+                                commandfor="settings-form"
+                                data-settings-submit>
+                                Valider
+                            </button>
+                        </form>
+                    </dialog>
+                </div>
+
+            </main>
+        </body>
+
+    </html>

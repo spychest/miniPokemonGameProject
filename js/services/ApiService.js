@@ -4,6 +4,15 @@ export default class ApiService
     {
         this.baseUrl = baseUrl;
     }
+
+    async getPokemonsForGenerations(generations) {
+        let pokemons = [];
+        for (const generation of generations) {
+            let pokemonsByGeneration = await this.getPokemonsByGaneration(generation);
+            pokemons = pokemons.concat(pokemonsByGeneration.pokemon);
+        }
+        return pokemons;
+    }
     
     async getPokemonsByGaneration(generation){
         let pokemons = await fetch(`${this.baseUrl}/generation/${generation}`).then((response) => {

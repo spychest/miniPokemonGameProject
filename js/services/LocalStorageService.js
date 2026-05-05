@@ -52,4 +52,12 @@ export default class LocalStorageService
     updateStreak(currentStreak) {
         localStorage.setItem('bestStreak', JSON.stringify(currentStreak));
     }
+
+    getSettings() {
+        return JSON.parse(localStorage.getItem('settings')) ?? {generations: [1]};
+    }
+
+    saveSettings(settings) {
+        localStorage.setItem('settings', JSON.stringify(settings));
+    }
 }

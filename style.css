@@ -36,6 +36,63 @@ body {
     z-index: 999999;
 }
 
+.gap-1 {
+    gap: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.settings-form:modal {
+    padding: 1rem;
+    margin: auto;
+    backdrop-filter: blur(15px);
+    background-color: hsla(202, 97%, 62%, 0.5);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.close-button{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 2rem;
+    color: white;
+    background-color: transparent;
+    border: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.settings-form:modal h3{
+    text-shadow: 2px 0 hsl(217, 55%, 34%), -2px 0 hsl(217, 55%, 34%), 0 2px hsl(217, 55%, 34%), 0 -2px hsl(217, 55%, 34%), 1px 1px hsl(217, 55%, 34%), -1px -1px hsl(217, 55%, 34%), 1px -1px hsl(217, 55%, 34%), -1px 1px hsl(217, 55%, 34%), 5px 5px 10px black;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.settings-form:modal label {
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.settings-form:modal select {
+    font-size: 1.2rem;
+    padding: .2rem;
+    border: none;
+    outline: 2px solid white;
+}
+
 /* UTILITY */
 
 .hidden {
