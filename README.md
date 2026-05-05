@@ -15,7 +15,7 @@ Or you can download it by clicking on the code green button and then click on "D
 You can now open the index.html file in browser and begin to play.
 
 ## Preview
-![](https://i.ibb.co/ng4qBb0/preview.jpg)
+![](./assets/screenshot.PNG)
 
 ## Stack
 ### HTML5
@@ -35,7 +35,8 @@ The API that I'm using is only available in french. It's an API that I made and 
 - Thanks to Eliot Alderson for saving the world.
 
 ## Todo
-[] Update API with parameters
+[ ] Update API with parameters
+[x] Use generation to make the DOM
 
 ## Ideas
 - Make an home page to choose between "Chill mod" and "Challenge mod". Challenge mod will allow user to choose a generation, launch a stopwatch, show number of errors, show the best streak.
