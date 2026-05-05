@@ -19,14 +19,35 @@ const settingsForm = document.querySelector('[data-form-settings]');
 const settingsValidateButton = document.querySelector('[data-settings-submit]');
 
 
-let currentStreak = 0;
 
 let apiService = new ApiService(baseApiUrl);
 let domService = new DomService();
 let localStorageService = new LocalStorageService();
 
-const userSettings = localStorageService.getSettings();
+let userSettings = localStorageService.getSettings();
+
+if (!userSettings) {
+    userSettings = {
+        generations: ['1']
+    }
+    localStorageService.saveSettings(userSettings);
+}
+
+let userScore = localStorageService.getUserScore();
+
+if(!userScore) {
+    userScore = {
+        currentStreak: 0,
+    }
+    localStorageService.saveUserScore(userScore);
+}
+
 let generations = userSettings.generations;
+
+// Verifier que userScore existe bien avant de tenter d'accéder à currentStreak, sinon initialiser currentStreak à 0
+
+let currentStreak = userScore.currentStreak;
+
 
 
 
@@ -39,13 +60,15 @@ window.addEventListener('load', async (event) => {
     generationsCheckboxes.forEach(checkbox => {
         if (generations.includes(checkbox.value)) {
             checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
         }
     });
 
     let allPokemons = await apiService.getPokemonsForGenerations(generations);
     totalPokemonSpan.innerText = allPokemons.length;
 
-    generateEmptyCardInDom(allPokemons.length);
+    generateEmptyCardInDom(allPokemons);
 
     let pokemons = localStorageService.getPokemonInLocalStorage();
     if (pokemons) {
@@ -79,6 +102,8 @@ pokemonForm.addEventListener('submit', async (event) => {
         localStorageService.increaseErrorCounter();
         updateErrorCounter();
         currentStreak = 0;
+        userScore.currentStreak = currentStreak;
+        localStorageService.saveUserScore(userScore);
         updateStreakCounter();
         return;
     } 
@@ -86,11 +111,14 @@ pokemonForm.addEventListener('submit', async (event) => {
     pokemon = pokemon.pokemon;
     let isAlreadyInLocalStorage = localStorageService.alreadyHasThisPokemon(pokemon);
 
+    console.log(generations);
     if(!generations.includes(pokemon.generation.toString())) {
         changeMessageBox('error', `Ce pokemon n'est pas dans les générations sélectionnées !`)
         localStorageService.increaseErrorCounter();
         updateErrorCounter();
         currentStreak = 0;
+        userScore.currentStreak = currentStreak;
+        localStorageService.saveUserScore(userScore);
         updateStreakCounter();
         return;
     }
@@ -100,6 +128,8 @@ pokemonForm.addEventListener('submit', async (event) => {
         localStorageService.increaseErrorCounter();
         updateErrorCounter();
         currentStreak = 0;
+        userScore.currentStreak = currentStreak;
+        localStorageService.saveUserScore(userScore);
         updateStreakCounter();
         return;
     } 
@@ -109,6 +139,8 @@ pokemonForm.addEventListener('submit', async (event) => {
     localStorageService.addPokemonInLocalStorage(pokemon);
     updatePokemonCounter();
     currentStreak++;
+    userScore.currentStreak = currentStreak;
+    localStorageService.saveUserScore(userScore);
     updateStreakCounter();    
     
     resetInput();
@@ -136,8 +168,8 @@ const correctDisplay = () => {
     let height = topDiv.offsetHeight;
 }
 
-const generateEmptyCardInDom = (numberOfPokemons) => {
-    return domService.generateEmptyCardInDom(containerDiv, numberOfPokemons);
+const generateEmptyCardInDom = (pokemons) => {
+    return domService.generateEmptyCardInDom(containerDiv, pokemons);
 }
 
 const updatePokemonCounter = () => {

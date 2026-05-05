@@ -54,10 +54,18 @@ export default class LocalStorageService
     }
 
     getSettings() {
-        return JSON.parse(localStorage.getItem('settings')) ?? {generations: [1]};
+        return JSON.parse(localStorage.getItem('settings'));
     }
 
     saveSettings(settings) {
         localStorage.setItem('settings', JSON.stringify(settings));
+    }
+
+    getUserScore() {
+        return JSON.parse(localStorage.getItem('userScore'));
+    }
+
+    saveUserScore(score) {
+        localStorage.setItem('userScore', JSON.stringify(score));
     }
 }

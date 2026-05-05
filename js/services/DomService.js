@@ -2,11 +2,13 @@ export default class DomService
 {
     constructor() {}
 
-    generateEmptyCardInDom(containerDiv, numberOfPokemons) {
-    for (let i = 0; i < numberOfPokemons; i++) {
+    generateEmptyCardInDom(containerDiv, pokemons) {
+        console.log(pokemons);
+        for(let pokemon of pokemons) {
+    
         let cardToAddToDom = document.createElement('div');
         cardToAddToDom.classList.add('flipping-card');
-        cardToAddToDom.setAttribute('pokedex-id', i+1);
+        cardToAddToDom.setAttribute('pokedex-id', pokemon.pokedexNumber);
 
         let card = document.createElement('div');
         card.classList.add('card');
