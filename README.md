@@ -34,5 +34,8 @@ The API that I'm using is only available in french. It's an API that I made and 
 - Thanks to [Jérôme BALIEUX](https://github.com/jbalieux) for the reconciliation with the front-end.
 - Thanks to Eliot Alderson for saving the world.
 
+## Todo
+[] Update API with parameters
+
 ## Ideas
 - Make an home page to choose between "Chill mod" and "Challenge mod". Challenge mod will allow user to choose a generation, launch a stopwatch, show number of errors, show the best streak.
