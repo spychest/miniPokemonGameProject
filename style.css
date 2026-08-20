@@ -1,4 +1,6 @@
-/* COMPOSITION */
+/* =========================================================
+   COMPOSITION
+   ========================================================= */
 
 *,
 ::before,
@@ -8,10 +10,16 @@
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
-    max-width: 100vw;
-    max-height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background-color: hsl(226, 61%, 23%);
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -21,20 +29,54 @@ body {
 
 .pokemon-font {
     font-family: "pokemonS";
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 5vw, 5rem);
     color: hsl(52, 100%, 65%);
-    text-shadow: 2px 0 hsl(217, 55%, 34%), -2px 0 hsl(217, 55%, 34%), 0 2px hsl(217, 55%, 34%), 0 -2px hsl(217, 55%, 34%),
-        1px 1px hsl(217, 55%, 34%), -1px -1px hsl(217, 55%, 34%), 1px -1px hsl(217, 55%, 34%), -1px 1px hsl(217, 55%, 34%), 5px 5px 10px black;
 
+    text-shadow:
+        2px 0 hsl(217, 55%, 34%),
+        -2px 0 hsl(217, 55%, 34%),
+        0 2px hsl(217, 55%, 34%),
+        0 -2px hsl(217, 55%, 34%),
+        1px 1px hsl(217, 55%, 34%),
+        -1px -1px hsl(217, 55%, 34%),
+        1px -1px hsl(217, 55%, 34%),
+        -1px 1px hsl(217, 55%, 34%),
+        5px 5px 10px black;
 }
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOP CONTAINER
+   ========================================================= */
 
 .top-container {
-    /* opacity: 0; */
     position: sticky;
     top: 0;
+
     width: 100%;
+
     z-index: 999999;
 }
+
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
 
 .gap-1 {
     gap: 1rem;
@@ -48,101 +90,142 @@ body {
     flex-direction: column;
 }
 
-.settings-form:modal {
-    padding: 1rem;
-    margin: auto;
-    backdrop-filter: blur(15px);
-    background-color: hsla(202, 97%, 62%, 0.5);
-    color: white;
-    font-size: 1.2rem;
-}
-
-.close-button{
-    position: absolute;
-    top: .5rem;
-    right: .5rem;
-    font-size: 2rem;
-    color: white;
-    background-color: transparent;
-    border: none;
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
+.hidden {
+    display: none;
 }
 
 .text-center {
     text-align: center;
 }
 
-.settings-form:modal h3{
-    text-shadow: 2px 0 hsl(217, 55%, 34%), -2px 0 hsl(217, 55%, 34%), 0 2px hsl(217, 55%, 34%), 0 -2px hsl(217, 55%, 34%), 1px 1px hsl(217, 55%, 34%), -1px -1px hsl(217, 55%, 34%), 1px -1px hsl(217, 55%, 34%), -1px 1px hsl(217, 55%, 34%), 5px 5px 10px black;
-    font-size: 1.5rem;
-    font-weight: bolder;
-}
 
-.settings-form:modal label {
-    font-size: 1.2rem;
-    font-weight: bolder;
-}
-
-.settings-form:modal select {
-    font-size: 1.2rem;
-    padding: .2rem;
-    border: none;
-    outline: 2px solid white;
-}
-
-/* UTILITY */
-
-.hidden {
-    display: none;
-}
-
-/* BLOCK */
-
-/* Form */
-
-.info-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    color: hsl(226, 61%, 23%);
-    background-color: hsla(52, 91%, 69%, 0.95);
-}
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 .title {
+    width: 100%;
+
     text-align: center;
-    text-shadow: 2px 0 hsl(217, 55%, 34%), -2px 0 hsl(217, 55%, 34%), 0 2px hsl(217, 55%, 34%), 0 -2px hsl(217, 55%, 34%), 5px 5px 30px black;
-    letter-spacing: 10px;
+
+    font-size: clamp(2.5rem, 5vw, 5rem);
+
+    letter-spacing: clamp(2px, 1vw, 10px);
+
+    text-shadow:
+        2px 0 hsl(217, 55%, 34%),
+        -2px 0 hsl(217, 55%, 34%),
+        0 2px hsl(217, 55%, 34%),
+        0 -2px hsl(217, 55%, 34%),
+        5px 5px 30px black;
 }
+
+
+/* =========================================================
+   INFORMATION / TOP PANEL
+   ========================================================= */
+
+.info-container {
+    display: grid;
+
+    /*
+     * Trois zones :
+     * boutons | recherche | statistiques
+     */
+    grid-template-columns:
+        minmax(150px, 1fr)
+        minmax(300px, 2fr)
+        minmax(280px, 1fr);
+
+    align-items: center;
+
+    gap: 1rem;
+
+    width: 100%;
+
+    padding: 1rem;
+
+    color: hsl(226, 61%, 23%);
+    background-color: hsla(52, 91%, 69%, 0.95);
+
+    /*
+     * Empêche le contenu de devenir gigantesque
+     * sur les écrans 4K/8K.
+     */
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   BUTTON AREA
+   ========================================================= */
+
+.info-container > .flex {
+    width: 100%;
+    max-width: 250px;
+
+    justify-self: center;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
 
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 900px;
+
+    gap: .75rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    width: 100%;
+
     gap: .5rem;
-    padding: 1rem;
+    padding: 0;
 }
 
 .form-group label {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 3vw, 2rem);
     font-weight: bolder;
 }
 
 .form-group input {
-    font-size: 1.5rem;
+    width: 100%;
+    min-width: 0;
+
+    padding: .5rem;
+
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
     border: none;
     outline: 2px solid black;
-    padding: .2rem;
-    min-width: 700px;
+
+    /*
+     * Empêche le texte du placeholder de provoquer
+     * des débordements sur les petits écrans.
+     */
+    overflow: hidden;
+}
+
+.form-group input::placeholder {
+    opacity: .8;
 }
 
 .form-group input:valid {
@@ -153,27 +236,49 @@ body {
     outline: 2px solid orangered;
 }
 
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 button {
     cursor: pointer;
 
     width: 100%;
+
     border: 2px solid black;
     border-radius: 5px;
-    padding: .3rem 2rem;
 
-    font-size: 1.2rem;
+    padding: .5rem 1rem;
+
+    font-size: clamp(1rem, 2vw, 1.2rem);
+
     color: white;
+
     text-shadow: 1px 1px 5px black;
 
     --hue: 0;
     --saturation: 0%;
     --lightness: 50%;
-    background-color: hsl(var(--hue), var(--saturation), var(--lightness));
 
+    background-color:
+        hsl(
+            var(--hue),
+            var(--saturation),
+            var(--lightness)
+        );
+
+    transition:
+        background-color .2s ease,
+        transform .1s ease;
 }
 
-.btn:hover {
+button:hover {
     --lightness: 30%;
+}
+
+button:active {
+    transform: scale(.98);
 }
 
 .btn-success {
@@ -186,25 +291,57 @@ button {
     --saturation: 100%;
 }
 
-.pokemon-counters {
-    font-size: 3rem;
-    line-height: 1.5;
-}
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
 
 .stats {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1.5rem;
+
+    width: 100%;
+
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
+    line-height: 1.3;
+
+    overflow: hidden;
 }
+
+.pokemon-counters {
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+.stats p:not(.pokemon-counters) {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   MESSAGE BOX
+   ========================================================= */
 
 [data-message-box] {
-    text-align: center;
-    font-size: 1.5rem;
-    padding: .5rem;
-    z-index: 2;
-}
+    width: 100%;
 
+    text-align: center;
+
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+
+    padding: .5rem;
+
+    z-index: 2;
+
+    overflow-wrap: anywhere;
+}
 
 .error-message {
     background-color: hsl(10, 78%, 53%);
@@ -216,127 +353,763 @@ button {
 }
 
 
-/* Pokemon Card */
+/* =========================================================
+   POKEMON CONTAINER
+   ========================================================= */
 
 .pokemon-container {
-    display: flex;
+    display: grid;
+
+    /*
+     * Le navigateur choisit automatiquement le nombre
+     * de cartes pouvant tenir sur une ligne.
+     */
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                min(100%, 280px),
+                350px
+            )
+        );
+
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: .5rem;
+
+    gap: clamp(.75rem, 2vw, 1.5rem);
+
+    width: 100%;
+
+    padding: clamp(.75rem, 2vw, 1.5rem);
 }
 
+
+/* =========================================================
+   FLIPPING CARD
+   ========================================================= */
+
 .flipping-card {
+    position: relative;
+
     background-color: transparent;
+
     perspective: 1000px;
-    width: 350px;
-    height: 550px;
+
+    width: 100%;
+    max-width: 350px;
+
+    /*
+     * Conserve exactement le ratio 350 / 550.
+     */
+    aspect-ratio: 350 / 550;
+
+    justify-self: center;
 }
 
 .flipping-card.show .card {
-    transform: rotateY(180deg)
+    transform: rotateY(180deg);
 }
 
 .card {
+    position: relative;
+
     width: 100%;
     height: 100%;
+
     transform-style: preserve-3d;
+
     transition: transform 1s ease-in-out;
 }
 
+
+/* =========================================================
+   CARD BACK
+   ========================================================= */
+
 .pokemon-back {
     position: absolute;
+
+    inset: 0;
+
     width: 100%;
     height: 100%;
-    border-left: 20px solid hsl(227, 54%, 21%);
-    border-right: 20px solid hsl(227, 54%, 21%);
+
+    border-left:
+        clamp(8px, 1.5vw, 20px)
+        solid
+        hsl(227, 54%, 21%);
+
+    border-right:
+        clamp(8px, 1.5vw, 20px)
+        solid
+        hsl(227, 54%, 21%);
+
     background-image: url("./assets/pokemonBack.png");
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
     backface-visibility: hidden;
 }
+
+
+/* =========================================================
+   CARD FRONT
+   ========================================================= */
 
 .pokemon-card {
     position: absolute;
+
+    inset: 0;
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: space-evenly;
 
-    border-radius: 10px;
-    background-color: hsl(var(--hue), var(--saturation), var(--lightness));
-    /* Rajouter filter pour avoir l'effet bubulle */
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
     width: 100%;
     height: 100%;
-    padding: .5rem;
+
+    padding: clamp(.4rem, 1vw, .5rem);
+
+    border-radius: 10px;
+
+    background-color:
+        hsl(
+            var(--hue),
+            var(--saturation),
+            var(--lightness)
+        );
+
+    backface-visibility: hidden;
+
+    transform: rotateY(180deg);
 }
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
 
 .header-card {
     display: flex;
+
     justify-content: space-between;
+    align-items: center;
+
     width: 100%;
+
+    gap: .5rem;
+}
+
+.header-card h2 {
+    min-width: 0;
+
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+
+    overflow-wrap: anywhere;
 }
 
 .pokemon-card p {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
 }
+
+
+/* =========================================================
+   CARD IMAGE
+   ========================================================= */
 
 .img-card {
     width: 100%;
     height: 40%;
 
-    border: 3px gainsboro ridge;
-    border-bottom: 10px gainsboro ridge;
+    min-height: 0;
+
+    border:
+        3px
+        gainsboro
+        ridge;
+
+    border-bottom:
+        10px
+        gainsboro
+        ridge;
+
     background-color: aliceblue;
 
-    /* border: 2px red solid; */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
+
+/* =========================================================
+   CARD DESCRIPTION
+   ========================================================= */
+
 .description {
-    padding: 1rem;
     width: 100%;
     height: 40%;
+
+    min-height: 0;
+
+    padding: clamp(.5rem, 2vw, 1rem);
+
     border-radius: 5px;
+
     background-color: rgba(186, 186, 186, .5);
-    font-size: 1.2rem !important;
+
+    font-size: clamp(.85rem, 1.8vw, 1.2rem) !important;
+
     text-align: justify;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   TYPES
+   ========================================================= */
+
+.w1 {
+    width: 100%;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
 }
 
 .types {
     width: 100%;
+
     display: flex;
+
     justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
     gap: .5rem;
 }
 
 .pill {
     color: white;
-    font-size: 1.3rem;
+
+    font-size: clamp(.85rem, 2vw, 1.3rem);
+
     text-shadow: 1px 3px 5px black;
+
     text-align: center;
 
-    min-width: 100px;
-    padding-bottom: .4rem;
-    padding-top: .2rem;
+    min-width: clamp(65px, 15vw, 100px);
 
-    border: 2px white solid;
+    padding:
+        .2rem
+        .5rem
+        .4rem;
+
+    border:
+        2px
+        white
+        solid;
+
     border-radius: 5px;
+
     filter: saturate(70%);
+
     box-shadow: 0 2px 2px grey;
 
     --hue: 0;
     --saturation: 100%;
     --lightness: 50%;
-    background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+
+    background-color:
+        hsl(
+            var(--hue),
+            var(--saturation),
+            var(--lightness)
+        );
 }
 
-/* EXCEPTION */
+
+/* =========================================================
+   SETTINGS MODAL
+   ========================================================= */
+
+.settings-form:modal {
+    width: min(90vw, 550px);
+    max-height: 90vh;
+
+    margin: auto;
+
+    padding: 1rem;
+
+    overflow-y: auto;
+
+    backdrop-filter: blur(15px);
+
+    background-color:
+        hsla(
+            202,
+            97%,
+            62%,
+            .5
+        );
+
+    color: white;
+
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.close-button {
+    position: absolute;
+
+    top: .5rem;
+    right: .5rem;
+
+    width: auto;
+    height: auto;
+
+    padding: 0;
+    margin: 0;
+
+    font-size: 2rem;
+
+    color: white;
+
+    background-color: transparent;
+
+    border: none;
+}
+
+.settings-form:modal h3 {
+    margin-bottom: 1rem;
+
+    text-shadow:
+        2px 0 hsl(217, 55%, 34%),
+        -2px 0 hsl(217, 55%, 34%),
+        0 2px hsl(217, 55%, 34%),
+        0 -2px hsl(217, 55%, 34%),
+        1px 1px hsl(217, 55%, 34%),
+        -1px -1px hsl(217, 55%, 34%),
+        1px -1px hsl(217, 55%, 34%),
+        -1px 1px hsl(217, 55%, 34%),
+        5px 5px 10px black;
+
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+
+    font-weight: bolder;
+}
+
+.settings-form:modal label {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+
+    font-weight: bolder;
+}
+
+.settings-form:modal fieldset {
+    border: 1px solid white;
+
+    padding: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+.settings-form:modal legend {
+    padding-inline: .5rem;
+
+    font-weight: bold;
+}
+
+.checkbox-group {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+        );
+
+    gap: .75rem;
+}
+
+.checkbox-group > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: .4rem;
+}
+
+.checkbox-group input {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   VERY LARGE SCREENS
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .info-container {
+        padding: 1.5rem 2rem;
+    }
+
+    .pokemon-container {
+        gap: 2rem;
+
+        padding: 2rem;
+    }
+}
+
+
+/* =========================================================
+   TABLETS / SMALL LAPTOPS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .info-container {
+        grid-template-columns:
+            180px
+            minmax(0, 1fr)
+            250px;
+    }
+
+    .stats {
+        font-size: 1.1rem;
+    }
+
+    .pokemon-counters {
+        font-size: 2.2rem;
+    }
+}
+
+
+/* =========================================================
+   TABLET PORTRAIT
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .info-container {
+        /*
+         * On passe à deux colonnes :
+         *
+         * boutons | statistiques
+         * recherche sur toute la largeur
+         */
+        grid-template-columns:
+            minmax(140px, .5fr)
+            minmax(200px, 1fr);
+
+        gap: .75rem;
+
+        padding: .75rem;
+    }
+
+    .form-container {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .info-container > .flex {
+        grid-column: 1;
+        grid-row: 1;
+
+        max-width: none;
+    }
+
+    .stats {
+        grid-column: 2;
+        grid-row: 1;
+
+        justify-self: stretch;
+    }
+
+    .form-container form {
+        max-width: none;
+    }
+
+    .pokemon-container {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    min(100%, 260px),
+                    350px
+                )
+            );
+    }
+}
+
+
+/* =========================================================
+   PHONES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .title {
+        font-size: clamp(2.2rem, 11vw, 3.5rem);
+
+        letter-spacing:
+            clamp(
+                1px,
+                1.5vw,
+                5px
+            );
+    }
+
+    .info-container {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: .75rem;
+
+        padding: .75rem;
+    }
+
+    .info-container > .flex {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        width: 100%;
+        max-width: none;
+
+        gap: .5rem;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .form-container form {
+        width: 100%;
+
+        gap: .5rem;
+    }
+
+    .form-group {
+        padding: 0;
+    }
+
+    .form-group input {
+        font-size: 1rem;
+    }
+
+    .stats {
+        width: 100%;
+
+        align-items: center;
+
+        text-align: center;
+
+        font-size: 1rem;
+    }
+
+    .pokemon-counters {
+        font-size: 2rem;
+    }
+
+    .pokemon-container {
+        grid-template-columns: 1fr;
+
+        padding: .75rem;
+    }
+
+    .flipping-card {
+        width: min(92vw, 350px);
+    }
+
+    [data-message-box] {
+        font-size: 1rem;
+    }
+
+    .description {
+        padding: .6rem;
+
+        font-size: .9rem !important;
+    }
+
+    .settings-form:modal {
+        width: 92vw;
+
+        padding: .75rem;
+    }
+
+    .checkbox-group {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .title {
+        font-size: 2.1rem;
+
+        letter-spacing: 1px;
+    }
+
+    .info-container {
+        padding: .5rem;
+    }
+
+    .info-container > .flex {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        font-size: .9rem;
+    }
+
+    .pokemon-counters {
+        font-size: 1.8rem;
+    }
+
+    .flipping-card {
+        width: 94vw;
+    }
+
+    .pokemon-card {
+        padding: .35rem;
+
+        border-radius: 7px;
+    }
+
+    .header-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .pokemon-card p {
+        font-size: .85rem;
+    }
+
+    .description {
+        padding: .5rem;
+
+        font-size: .8rem !important;
+    }
+
+    .pill {
+        min-width: 60px;
+
+        padding:
+            .15rem
+            .35rem
+            .3rem;
+
+        font-size: .8rem;
+    }
+
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 320px) {
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .pokemon-counters {
+        font-size: 1.6rem;
+    }
+
+    .stats {
+        font-size: .8rem;
+    }
+
+    .flipping-card {
+        width: 96vw;
+    }
+
+    .pokemon-card {
+        padding: .25rem;
+    }
+
+    .description {
+        font-size: .75rem !important;
+    }
+
+    .pill {
+        min-width: 55px;
+
+        font-size: .7rem;
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+   ========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .info-container {
+        padding: .5rem;
+    }
+
+    .pokemon-container {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    240px,
+                    300px
+                )
+            );
+    }
+
+    .flipping-card {
+        max-width: 300px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .card {
+        transition: none;
+    }
+
+    button {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   POKEMON TYPES
+   ========================================================= */
 
 .plant {
     --hue: 83;
